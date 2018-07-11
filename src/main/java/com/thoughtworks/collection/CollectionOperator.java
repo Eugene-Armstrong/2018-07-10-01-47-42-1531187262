@@ -7,8 +7,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+
 public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
+        int chk = left - right;
+        int theLeft, theRight;
+        if(chk<0){
+            theLeft = left;
+            theRight = right;
+        }else{
+            theLeft = right;
+            theRight = left;
+        }
         throw new NotImplementedException();
     }
 
