@@ -10,20 +10,35 @@ import java.util.stream.Stream;
 
 public class CollectionOperator {
     public List<Integer> getListByInterval(int left, int right) {
-        int chk = left - right;
-        int theLeft, theRight;
-        if(chk<0){
-            theLeft = left;
-            theRight = right;
-        }else{
-            theLeft = right;
-            theRight = left;
+        List<Integer> resultList = new ArrayList<>();
+        if(left<right){
+            for(int i=left;i<=right;i++){
+                resultList.add(i);
+            }
+        }else {
+            for(int i=left;i>=right;i--){
+                resultList.add(i);
+            }
         }
-        throw new NotImplementedException();
+        return resultList;
+//        throw new NotImplementedException();
     }
 
     public List<Integer> getEvenListByIntervals(int left, int right) {
-        throw new NotImplementedException();
+        List<Integer> resultList = new ArrayList<>();
+        if(left<right){
+            for(int i=left;i<=right;i++){
+                resultList.add(i);
+            }
+        }else {
+            for(int i=left;i>=right;i--){
+                resultList.add(i);
+            }
+        }
+        Integer[] result = resultList.stream().
+                filter(n -> n%2 == 0).toArray(Integer[]::new);
+        return Arrays.asList(result);
+//        throw new NotImplementedException();
     }
 
     public List<Integer> popEvenElments(int[] array) {
@@ -57,6 +72,16 @@ public class CollectionOperator {
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
+        List<Integer> list=new ArrayList<Integer>();
+        for(int first:firstArray){
+            for (int second:secondArray){
+                if (first != second){
+                    list.add(second);
+                }
+            }
+        }
+        List<Integer> result =Arrays.asList(firstArray);
+//        return result.addAll(list);
         throw new NotImplementedException();
     }
 }
