@@ -27,22 +27,50 @@ public class Reduce {
     }
 
     public double getAverage() {
-        throw new NotImplementedException();
+        double sum = arrayList.stream().reduce(0, (a, b) -> a+b);
+        return sum/arrayList.size();
+//        throw new NotImplementedException();
     }
 
     public double getOrderedMedian() {
-        throw new NotImplementedException();
+        arrayList.stream().sorted();
+        Integer[] a = arrayList.stream().toArray(Integer[]::new);
+        double result;
+        if(a.length%2!=0){
+            result = a[a.length/2-1];
+        }else{
+            result = (a[a.length/2-1]+a[a.length/2])/2.0;
+        }
+        return result;
+//        throw new NotImplementedException();
     }
 
     public int getFirstEven() {
-        throw new NotImplementedException();
+        int result = 0;
+        for(int i:arrayList){
+            if(i%2==0){
+                result = i;
+                break;
+            }
+        }
+        return result;
+//        throw new NotImplementedException();
     }
 
     public int getIndexOfFirstEven() {
-        throw new NotImplementedException();
+        int result = 0;
+        for(int i=0;i<arrayList.size();i++){
+            if(arrayList.get(i)%2==0){
+                result = i;
+                break;
+            }
+        }
+        return result;
+//        throw new NotImplementedException();
     }
 
     public boolean isEqual(List<Integer> arrayList) {
+
         throw new NotImplementedException();
     }
 
@@ -51,10 +79,26 @@ public class Reduce {
     }
 
     public int getLastOdd() {
-        throw new NotImplementedException();
+        int result = 0;
+        for(int i=arrayList.size()-1;i>=0;i--){
+            if(arrayList.get(i)%2!=0){
+                result = arrayList.get(i);
+                break;
+            }
+        }
+        return result;
+//        throw new NotImplementedException();
     }
 
     public int getIndexOfLastOdd() {
-        throw new NotImplementedException();
+        int result = 0;
+        for(int i=arrayList.size()-1;i>=0;i--){
+            if(arrayList.get(i)%2!=0){
+                result = i;
+                break;
+            }
+        }
+        return result;
+//        throw new NotImplementedException();
     }
 }

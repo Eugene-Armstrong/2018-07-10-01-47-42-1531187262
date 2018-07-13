@@ -2,10 +2,12 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MyMap {
 
@@ -35,7 +37,24 @@ public class MyMap {
     }
 
     public List<String> mapLetters() {
-        throw new NotImplementedException();
+        List<String> result = new ArrayList<>();
+        for(int i : array){
+            if(i<=26){
+                result.add(letters[i]);
+            }else{
+                int n = i/26;
+                String str = "";
+                for (int j=0;j<n;j++){
+                    str += j==0?letters[i%26-1]:letters[0];
+                }
+                result.add(str);
+            }
+        }
+//        List<String> result = array.stream().
+//                map(n -> n<=26?letters[n-1]:letters[n%26-1]).
+//                collect(Collectors.toList());
+        return result;
+//        throw new NotImplementedException();
     }
 
     public List<Integer> sortFromBig() {

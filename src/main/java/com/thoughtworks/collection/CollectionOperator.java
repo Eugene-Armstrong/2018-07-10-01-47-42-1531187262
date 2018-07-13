@@ -5,7 +5,10 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 
 public class CollectionOperator {
@@ -72,16 +75,13 @@ public class CollectionOperator {
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
-        List<Integer> list=new ArrayList<Integer>();
-        for(int first:firstArray){
-            for (int second:secondArray){
-                if (first != second){
-                    list.add(second);
-                }
-            }
-        }
-        List<Integer> result =Arrays.asList(firstArray);
-//        return result.addAll(list);
-        throw new NotImplementedException();
+        List<Integer> list1 = Arrays.asList(firstArray);
+        List<Integer> list2 = Arrays.asList(secondArray);
+
+        List<Integer> reduce1 = list2.stream().filter(item -> !list1.contains(item)).collect(toList());
+        list1.addAll(reduce1);
+        System.out.println(list1.toString());
+        return list1;
+//        throw new NotImplementedException();
     }
 }
