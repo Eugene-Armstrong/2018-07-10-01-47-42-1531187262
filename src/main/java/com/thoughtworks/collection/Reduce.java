@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Reduce {
@@ -69,13 +70,23 @@ public class Reduce {
 //        throw new NotImplementedException();
     }
 
-    public boolean isEqual(List<Integer> arrayList) {
-
-        throw new NotImplementedException();
+    public boolean isEqual(List<Integer> objectList) {
+        Boolean isEqual = false;
+        if (objectList.size() == arrayList.size()) {
+            isEqual = IntStream.range(0, arrayList.size())
+                    .allMatch(index -> arrayList.get(index) == objectList.get(index));
+        }
+        return isEqual;
+//        throw new NotImplementedException();
     }
 
-    public Double getMedianInLinkList(SingleLink singleLink) {
-        throw new NotImplementedException();
+    public double getMedianInLinkList(SingleLink<Integer> singleLink) {
+        int index = arrayList.size() / 2;
+        if (arrayList.size() % 2 == 0) {
+            return (singleLink.getNode(index) + singleLink.getNode(index + 1)) / 2.0;
+        } else {
+            return singleLink.getNode(index + 1);
+        }
     }
 
     public int getLastOdd() {

@@ -75,13 +75,19 @@ public class CollectionOperator {
     }
 
     public List<Integer> addUncommonElement(Integer[] firstArray, Integer[] secondArray) {
-        List<Integer> list1 = Arrays.asList(firstArray);
-        List<Integer> list2 = Arrays.asList(secondArray);
-
-        List<Integer> reduce1 = list2.stream().filter(item -> !list1.contains(item)).collect(toList());
-        list1.addAll(reduce1);
-        System.out.println(list1.toString());
-        return list1;
+//        List<Integer> list1 = Arrays.asList(firstArray);
+//        List<Integer> list2 = Arrays.asList(secondArray);
+//
+//        List<Integer> reduce1 = list2.stream().filter(item -> !list1.contains(item)).collect(toList());
+//        list1.addAll(reduce1);
+//        return list1;
 //        throw new NotImplementedException();
+        List<Integer> unCommonList = Arrays.stream(secondArray).filter(num ->
+                !Arrays.stream(firstArray).anyMatch(numInFirst -> numInFirst.equals(num))
+        ).collect(Collectors.toList());
+
+        List<Integer> results = Arrays.stream(firstArray).collect(Collectors.toList());
+        results.addAll(unCommonList);
+        return results;
     }
 }

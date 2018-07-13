@@ -37,23 +37,39 @@ public class MyMap {
     }
 
     public List<String> mapLetters() {
-        List<String> result = new ArrayList<>();
-        for(int i : array){
-            if(i<=26){
-                result.add(letters[i]);
-            }else{
-                int n = i/26;
-                String str = "";
-                for (int j=0;j<n;j++){
-                    str += j==0?letters[i%26-1]:letters[0];
-                }
-                result.add(str);
+//        List<String> result = new ArrayList<>();
+//        for(int i : array){
+//            if(i<=26){
+//                result.add(letters[i]);
+//            }else{
+//                int n = i/26;
+//                String str = "";
+//                for (int j=0;j<n;j++){
+//                    str += j==0?letters[i%26-1]:letters[0];
+//                }
+//                result.add(str);
+//            }
+//        }
+////        List<String> result = array.stream().
+////                map(n -> n<=26?letters[n-1]:letters[n%26-1]).
+////                collect(Collectors.toList());
+//        return result;
+
+        return array.stream().map(num -> {
+            num = num - 1;
+            int letterSize = letterList.size();
+
+            String resultStr;
+            if (num >= letterSize) {
+                int baseLocateNum = num % letterSize;
+                int MultipleLocateNumLocateNum = num / (letterSize) - 1;
+                resultStr = letterList.get(MultipleLocateNumLocateNum) + letterList.get(baseLocateNum);
+            } else {
+                resultStr = letterList.get(num);
             }
-        }
-//        List<String> result = array.stream().
-//                map(n -> n<=26?letters[n-1]:letters[n%26-1]).
-//                collect(Collectors.toList());
-        return result;
+            return resultStr;
+
+        }).collect(Collectors.toList());
 //        throw new NotImplementedException();
     }
 
